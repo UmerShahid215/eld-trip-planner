@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-steel-50 text-ink antialiased;
+  background-image:
+    radial-gradient(60rem 60rem at 110% -10%, rgba(245, 158, 11, 0.06), transparent 60%),
+    radial-gradient(50rem 50rem at -10% 0%, rgba(30, 48, 80, 0.06), transparent 55%);
+  background-attachment: fixed;
+}
+
+/* Numeric tabular alignment for hour/mile figures */
+.tabular {
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+/* Leaflet tweaks so it sits nicely inside a rounded card */
+.leaflet-container {
+  font-family: inherit;
+  background: #e7ecf4;
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 10px;
+  box-shadow: 0 8px 24px -12px rgba(12, 21, 38, 0.4);
+}
+.leaflet-popup-content {
+  margin: 10px 12px;
+}
