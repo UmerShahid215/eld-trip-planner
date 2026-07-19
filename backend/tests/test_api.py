@@ -46,7 +46,7 @@ def client():
 
 @pytest.fixture(autouse=True)
 def patch_services(monkeypatch):
-    monkeypatch.setattr("trips.views.NominatimGeocoder", FakeGeocoder)
+    monkeypatch.setattr("trips.views.get_geocoder", lambda: FakeGeocoder())
     monkeypatch.setattr("trips.views.get_router", lambda: FakeRouter())
 
 

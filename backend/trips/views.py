@@ -8,7 +8,7 @@ from .serializers import (
     TripInputSerializer,
     TripSerializer,
 )
-from .services.geocoding import GeocodingError, NominatimGeocoder
+from .services.geocoding import GeocodingError, get_geocoder
 from .services.planner import plan_trip
 from .services.routing import RoutingError, get_router
 
@@ -33,7 +33,7 @@ class TripViewSet(viewsets.ReadOnlyModelViewSet):
                 pickup_location=data["pickup_location"],
                 dropoff_location=data["dropoff_location"],
                 current_cycle_used_hours=data["current_cycle_used_hours"],
-                geocoder=NominatimGeocoder(),
+                geocoder=get_geocoder(),
                 router=get_router(),
             )
         except GeocodingError as exc:
