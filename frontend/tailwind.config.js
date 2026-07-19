@@ -43,6 +43,25 @@ export default {
       },
       boxShadow: {
         card: "0 1px 2px rgba(12,21,38,0.04), 0 8px 24px -12px rgba(12,21,38,0.18)",
+        cardhover: "0 2px 4px rgba(12,21,38,0.05), 0 18px 40px -16px rgba(12,21,38,0.28)",
+        paper: "0 1px 0 rgba(12,21,38,0.04), 0 10px 30px -14px rgba(12,21,38,0.22)",
+        insetline: "inset 0 -1px 0 rgba(12,21,38,0.10)",
+      },
+      borderRadius: {
+        "2xl": "1rem",
+      },
+      keyframes: {
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(6px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        shimmer: {
+          "100%": { transform: "translateX(100%)" },
+        },
+      },
+      animation: {
+        "fade-up": "fade-up 0.4s cubic-bezier(0.16,1,0.3,1) both",
+        shimmer: "shimmer 1.6s infinite",
       },
     },
   },

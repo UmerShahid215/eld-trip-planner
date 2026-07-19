@@ -26,6 +26,43 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* Keyboard focus: a clear, consistent amber ring for accessibility. */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid theme("colors.amber.500");
+  outline-offset: 2px;
+  border-radius: 0.4rem;
+}
+::selection {
+  background: rgba(245, 158, 11, 0.25);
+}
+
+/* Smooth entrance without jank on reduced-motion machines. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Print: log sheets should read as clean paper documents. */
+@media print {
+  body {
+    background: #fff;
+  }
+  /* Hide only the app chrome — not the log sheet's own recap footer. */
+  body > div > header,
+  body > div > footer,
+  main > aside {
+    display: none !important;
+  }
+  main {
+    display: block !important;
+  }
+}
+
 /* Leaflet tweaks so it sits nicely inside a rounded card */
 .leaflet-container {
   font-family: inherit;
