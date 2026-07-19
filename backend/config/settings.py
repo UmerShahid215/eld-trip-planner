@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "corsheaders",
+    "drf_spectacular",
     "trips",
 ]
 
@@ -88,6 +89,21 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
     "DEFAULT_PARSER_CLASSES": ["rest_framework.parsers.JSONParser"],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "RouteLog API",
+    "DESCRIPTION": (
+        "FMCSA-compliant trip planner and ELD daily-log generator.\n\n"
+        "Submit a trip (current location → pickup → dropoff + cycle hours used) "
+        "and receive an Hours-of-Service schedule with filled Driver's Daily Logs "
+        "for every calendar day of the trip."
+    ),
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "CONTACT": {"email": "umershahid215@gmail.com"},
+    "LICENSE": {"name": "MIT"},
 }
 
 # --- CORS ---

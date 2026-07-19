@@ -1,3 +1,8 @@
+from __future__ import annotations
+
+from typing import Dict
+
+from drf_spectacular.utils import extend_schema_field
 from rest_framework import serializers
 
 from hos_engine import constants as C
@@ -23,7 +28,8 @@ class DutySegmentSerializer(serializers.ModelSerializer):
         model = DutySegment
         fields = ["start_hour", "end_hour", "status", "location_label", "duration_hours"]
 
-    def get_duration_hours(self, obj):
+    @extend_schema_field(serializers.FloatField())
+    def get_duration_hours(self, obj) -> float:
         return round(obj.end_hour - obj.start_hour, 4)
 
 
@@ -35,7 +41,8 @@ class DutyDaySerializer(serializers.ModelSerializer):
         model = DutyDay
         fields = ["day_number", "date", "segments", "totals"]
 
-    def get_totals(self, obj):
+    @extend_schema_field(serializers.DictField(child=serializers.FloatField()))
+    def get_totals(self, obj) -> Dict[str, float]:
         totals = {s.value: 0.0 for s in [
             DutySegment.Status.OFF_DUTY,
             DutySegment.Status.SLEEPER_BERTH,
